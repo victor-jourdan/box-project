@@ -2,13 +2,14 @@ from readfa import readfq
 from util import * 
 import itertools as itt
 
-def is_maw(seq, kmer):
-    return (kmer[1:len(kmer)] in seq and \
-    kmer not in seq and \
-    kmer[0:len(kmer)-1] in seq) or\
-    (reverse_complement(kmer[0:len(kmer)-1]) in seq and\
-    reverse_complement(kmer[1:len(kmer)]) in seq and \
-    reverse_complement(kmer) not in seq)
+def is_maw(seq, elt):
+    return (elt[1:len(elt)] in seq and \
+    elt not in seq and \
+    elt[0:len(elt)-1] in seq) or \
+    (reverse_complement(elt[0:len(elt)-1]) in seq and \
+    reverse_complement(elt[1:len(elt)]) in seq and \
+    reverse_complement(elt) not in seq) and elt <= reverse_complement(elt) 
+    # we only write an elt once, so we select the canonical version of it
 
 def brute_force(seqname, seq, k, output_file):
     maws = [[] for _ in range(k+1)]
