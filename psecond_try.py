@@ -28,7 +28,7 @@ def initialization(k, nb_sequences, sequences, p):
     ]
     size_S = nb_sequences
     min_allowed = ceil ((1-p) * nb_sequences)
-    pmaws = [set() for _ in range(k+1)]
+    pmaws = [set() for i in range(k+1)]
     for l in "ACGNT": #treating the base case of single-letter words
         occurrences = []
         for i in range(len(sequences)):
@@ -65,11 +65,17 @@ def filling_structure(stage):
     pmaws[i] = sorted(pmaws[i])
 
 
+def filling_imer(sequence, sequence_number):
+    imers.append([[] for _ in range(k)])
+    
 
 
 def main(): 
+    global pmaws
     #initializtion() setup args retrieval
     for i in range(k):
-        filling_structue(i + 1)            
+        filling_structure(i + 1)   
+    tsv_print_array_version(seqname=seqname)
+            
 
         

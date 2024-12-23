@@ -23,7 +23,7 @@ def brute_force(seqname, seq, k, output_file):
 
 
 def main():
-    args = read_args(3, 3, "Usage: python zero_try.py <output file> <sequence file> <kmax>") 
+    args = read_args(4, 3, "Usage: python zero_try.py <output file path (will add the number of the sequence and .tsv at the end)> <sequences file path> <kmax> <optional: maximum number of sequences>") 
     with xopen(args[1]) as filename:
         for seqname,seq,_ in readfq(filename):
             brute_force(seqname, seq, int(args[2]), args[0])
