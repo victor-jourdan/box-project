@@ -1,3 +1,4 @@
 *.tsv
 references.bib
 report.typ
+__pycache__/
