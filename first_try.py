@@ -15,7 +15,7 @@ def semi_brute_force(seqname, seq, k = 0, output_file = "output.tsv"):
     kmers[0][""] = 1 # the kmer of size 0 is the empty string
     kmaws = [[] for _ in range(k+1)] # to avoid offset of 1 errors, we add a kmaw for substrings of size 0
     for i in range(1,k+1):
-        for j in range(len(seq) - k):
+        for j in range(len(seq) - i):
             kmers[i][seq[j: j + i].upper()] = 1 # we build the collections of kmers of s of size i for i in range k
     
     for i in range(k): 
