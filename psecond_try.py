@@ -28,7 +28,6 @@ def initialization(k, nb_sequences, sequences, p):
     ]
     size_S = nb_sequences
     min_allowed = ceil ((1-p) * nb_sequences)
-    print("min" * 50, min_allowed)
     pmaws = [[] for i in range(k+1)]
     for l in "ACGNT": #treating the base case of single-letter words
         occurrences = []
@@ -39,8 +38,6 @@ def initialization(k, nb_sequences, sequences, p):
             struct[0][l] = Struct(occurrences = occurrences)
         else: 
             pmaws[1].append(l)
-        #print(pmaws[1])
-        #print(struct[0])
     pmaws[1] = sorted(pmaws[1])
 
 
@@ -51,36 +48,24 @@ def filling_structure(stage):
     global struct 
     global imers 
     global pmaws
-    print("*" * 200)
     dic = struct[stage - 1]
    
     for x in dic:
-        for l in "ACGNT":
-            
-            x_r = x[1:] + l
-            #print("stage ", stage, " considering ", x, " and ", x_r)
+        for l in "ACGNT":     
+            x_r = x[1:] + l      
             if x_r in dic:
-                struct1 = dic[x]
-                #print("struct1 ", struct1)
-                struct2 = dic[x_r]
-                #print("struct2 ", struct2)
+                struct1 = dic[x]              
+                struct2 = dic[x_r]               
                 occurrences = []
                 for i in struct1.occurrences:
-                    if i in struct2.occurrences:
-                        #print(i, x + l)
-                        #print(x+l)
-                        #print(len(imers[i][stage + 1]))
+                    if i in struct2.occurrences:                       
                         if x + l in imers[i][stage + 1]:
-                            #print("occ !")
                             occurrences.append(i)
                 if len(occurrences) >= min_allowed:
                     struct[stage][x+l] = Struct(occurrences = occurrences)
                 else:
-                    #print("x" * 100)
-                    #print(type(pmaws[i]))
                     pmaws[stage].append(x+l)
     pmaws[stage] = sorted(set(pmaws[stage]))
-    print("pmawsstage", pmaws[stage], "i" *40)
 
 
 def filling_imer(seq, k):
@@ -98,7 +83,7 @@ def main():
     global pmaws
     global size_S
     global imers
-    #initializtion() setup args retrieval
+    
     args = read_args(5, 4, "Usage: python psecond_try.py <output file path (will add the .tsv at the end)> <sequences file path> <kmax> <p> <optional: maximum number of sequences>") 
     counter = 0
     nb_iter = 0
@@ -119,11 +104,16 @@ def main():
                 break
     size_S = counter
     initialization(k, size_S, sequences, p)
-    #brute_force(seqname, seq, int(args[2]), args[0])
+    
     for i in range(k):
         filling_structure(i + 1)   
-    print("pmaws")
-    print(pmaws)
+    
     tsv_print_array_version(args[1] + f" for p = {p} and k = ", pmaws, k, args[0] + "0.tsv")            
-main()
+
+
+if __name__ == "__main__":
+    import time
+    start_time = time.time()
+    main()
+    print("--- %s seconds ---" % (time.time() - start_time))
         
