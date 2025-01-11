@@ -14,7 +14,7 @@ The working files are: 
 
  
  
-- Time spent on the project : 
+Time spent on the project : 
 Armand : 3 - 5h
 Victor : 25 - 30h
 
