@@ -28,8 +28,11 @@ def main():
         for seqname,seq,_ in readfq(filename):
             brute_force(seqname, seq, int(args[2]), args[0])
 
-main()
-
+if __name__ == "__main__":
+    import time
+    start_time = time.time()
+    main()
+    print("--- %s seconds ---" % (time.time() - start_time))
     
 
 

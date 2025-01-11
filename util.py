@@ -10,7 +10,7 @@ def read_args(expected_args, num_mandatory_args, presentation_str): #and also fl
     if len(args) >= 1: 
         i = 0 
         while True:
-            print(args[0] + str(i) + ".tsv")
+            #print(args[0] + str(i) + ".tsv") #if you want to print the erased files
             if os.path.isfile(args[0] + str(i) + ".tsv"):
                 os.remove(args[0] + str(i) + ".tsv")
                 i += 1
