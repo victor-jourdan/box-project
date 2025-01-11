@@ -12,6 +12,8 @@ The working files are: 
 - psecond_try, an improvement for the second question, which can be used as below:
  - Usage: python psecond_try.py <output file path (will add the .tsv at the end)> <sequences file path> <kmax> <p> <optional: maximum number of sequences>
 
+ 
+ 
 - Time spent on the project : 
 Armand : 3 - 5h
 Victor : 25 - 30h
