@@ -13,6 +13,8 @@ The working files are: 
  - Usage: python psecond_try.py <output file path (will add the .tsv at the end)> <sequences file path> <kmax> <p> <optional: maximum number of sequences>
 
 
+The report is BOXREPORT.pdf
+
 - Time spent on the project : 
 Armand : 3 - 5h
 Victor : 25 - 30h
